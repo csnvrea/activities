@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <title>Blush &amp; Brew | Café Menu</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Blush & Brew — a cozy pastel café serving coffee, tea, matcha and sweet desserts."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="ambient" aria-hidden="true">
+      <span class="blob blob-blush"></span>
+      <span class="blob blob-lavender"></span>
+      <span class="blob blob-mint"></span>
+      <span class="blob blob-cream"></span>
+    </div>
+
+    <header class="sticky-top nav-wrap">
+      <div class="container">
+        <nav class="cafe-nav d-flex align-items-center justify-content-between" aria-label="Main navigation">
+          <a class="wordmark" href="#home">
+            <span class="wordmark-mark">🌸</span>
+            Blush &amp; Brew
+          </a>
+          <div class="d-flex gap-1">
+            <a class="nav-pill" href="#home">Home</a>
+            <a class="nav-pill" href="#menu">Menu</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero-section">
+        <div class="container">
+          <div class="row g-4 align-items-stretch hero-row">
+            <div class="col-12 col-lg-7">
+              <div class="glass-card hero-card h-100">
+                <span class="eyebrow">☕ Café &amp; Sweets</span>
+                <h1 class="hero-title">A Little Cup of Happiness</h1>
+                <p class="hero-text">
+                  Welcome to Blush &amp; Brew, a cozy corner for sweet sips and
+                  freshly baked treats. Grab a drink, pick a dessert, and stay
+                  a while. Everything here is made with a little extra love.
+                </p>
+                <div>
+                  <a href="#menu" class="btn btn-blush btn-lg">Explore Our Menu</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-5">
+              <div class="glass-card hero-art h-100">
+                <img src="images/home.png" class="hero-photo" alt="Blush &amp; Brew drinks and desserts" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="menu" class="py-5">
+        <div class="container">
+          <div class="text-center mb-4">
+            <span class="eyebrow">Our Menu</span>
+            <h2 class="section-title">Pick Your Treat</h2>
+            <p class="section-subtitle">Prices are in Philippine pesos (₱).</p>
+          </div>
+
+          <div class="glass-card filter-card mb-4">
+            <div class="row g-3 align-items-center">
+              <div class="col-12 col-lg-5">
+                <label for="search" class="visually-hidden">Search the menu</label>
+                <div class="input-group search-group">
+                  <span class="input-group-text">🔍</span>
+                  <input
+                    type="text"
+                    id="search"
+                    class="form-control"
+                    placeholder="Search drinks and desserts..."
+                  />
+                </div>
+              </div>
+              <div class="col-12 col-lg-7">
+                <div class="d-flex flex-wrap gap-2 justify-content-lg-end" id="filters">
+                  <button type="button" class="btn btn-filter active" data-category="All">All</button>
+                  <button type="button" class="btn btn-filter" data-category="Coffee">Coffee</button>
+                  <button type="button" class="btn btn-filter" data-category="Tea & Matcha">Tea &amp; Matcha</button>
+                  <button type="button" class="btn btn-filter" data-category="Desserts">Desserts</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="message" class="message-box text-center" aria-live="polite">
+            Brewing the menu... ☕
+          </div>
+
+          <div class="row g-4" id="parent">
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container d-flex flex-column flex-lg-row justify-content-center align-items-center text-center gap-2 gap-lg-4">
+        <span class="wordmark small-wordmark">🌸 Blush &amp; Brew</span>
+        <span class="meta-text">Made with love · Open daily, 8 AM – 8 PM</span>
+        <a href="#home" class="meta-link">↑ Back to top</a>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>

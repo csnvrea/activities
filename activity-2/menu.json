@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Iced Latte",
+    "category": "Coffee",
+    "description": "Smooth espresso poured over cold milk and ice. Simple, creamy and refreshing.",
+    "price": 150,
+    "image": "images/iced-latte.png"
+  },
+  {
+    "id": 2,
+    "name": "Caramel Macchiato",
+    "category": "Coffee",
+    "description": "Vanilla milk, a bold espresso shot and a sweet caramel drizzle on top.",
+    "price": 165,
+    "image": "images/caramel-macchiato.png"
+  },
+  {
+    "id": 3,
+    "name": "Heart Cappuccino",
+    "category": "Coffee",
+    "description": "Rich espresso with velvety steamed milk and a little latte-art heart.",
+    "price": 140,
+    "image": "images/cappuccino.png"
+  },
+  {
+    "id": 4,
+    "name": "Matcha Latte",
+    "category": "Tea & Matcha",
+    "description": "Ceremonial-style matcha whisked with cold milk for a grassy, gentle sweetness.",
+    "price": 170,
+    "image": "images/matcha-latte.png"
+  },
+  {
+    "id": 5,
+    "name": "Strawberry Milk",
+    "category": "Tea & Matcha",
+    "description": "Fresh strawberry puree swirled into chilled milk. A pink sip of childhood.",
+    "price": 145,
+    "image": "images/strawberry-milk.png"
+  },
+  {
+    "id": 6,
+    "name": "Lavender Earl Grey",
+    "category": "Tea & Matcha",
+    "description": "Fragrant Earl Grey tea with calming lavender buds, served hot.",
+    "price": 130,
+    "image": "images/lavender-tea.png"
+  },
+  {
+    "id": 7,
+    "name": "Blueberry Cheesecake",
+    "category": "Desserts",
+    "description": "Creamy baked cheesecake on a buttery crust with a blueberry compote topping.",
+    "price": 185,
+    "image": "images/blueberry-cheesecake.png"
+  },
+  {
+    "id": 8,
+    "name": "Chocolate Croissant",
+    "category": "Desserts",
+    "description": "Flaky, golden croissant baked fresh with a melty dark chocolate center.",
+    "price": 120,
+    "image": "images/chocolate-croissant.png"
+  },
+  {
+    "id": 9,
+    "name": "Classic Pancakes",
+    "category": "Desserts",
+    "description": "A fluffy stack with butter and warm maple syrup. Comfort on a plate.",
+    "price": 195,
+    "image": "images/classic-pancakes.png"
+  }
+]
