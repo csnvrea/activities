@@ -71,6 +71,8 @@
       transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
+    .activity-card + .activity-card { margin-top: 1rem; }
+
     .activity-card:hover { transform: translateY(-4px); border-color: rgba(255, 173, 197, 0.4); box-shadow: 0 18px 42px rgba(255, 173, 197, 0.18); }
     .activity-card:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
     .activity-number { display: block; margin-bottom: 0.35rem; color: var(--rose); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
@@ -95,6 +97,13 @@
         <strong class="activity-number">Activity 1</strong>
         <h2>Studyspace</h2>
         <p class="activity-description">A BSIT subject hub with course topics and class details.</p>
+      </span>
+    </a>
+    <a class="activity-card" href="activity-2/">
+      <span>
+        <strong class="activity-number">Activity 2</strong>
+        <h2>Blush &amp; Brew</h2>
+        <p class="activity-description">A café menu website with live search and category filters.</p>
       </span>
     </a>
   </main>
