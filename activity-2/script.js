@@ -1,7 +1,7 @@
-var elParent = document.getElementById("parent"); // where the cards go
-var elMessage = document.getElementById("message"); // loading / error / empty text
-var elSearch = document.getElementById("search"); // the search box
-var elFilters = document.querySelectorAll(".btn-filter"); // the 4 category buttons
+var elParent = document.getElementById("parent");
+var elMessage = document.getElementById("message");
+var elSearch = document.getElementById("search");
+var elFilters = document.querySelectorAll(".btn-filter");
 
 var menu = [];
 var activeCategory = "All";
@@ -80,3 +80,22 @@ fetch("menu.json")
     menu = data;
     showMenu();
   });
+
+var elNavLinks = document.querySelectorAll(".nav-pill");
+var elMenuSection = document.getElementById("menu");
+
+function updateActiveNav() {
+  var menuIsOnScreen = elMenuSection.getBoundingClientRect().top <= window.innerHeight / 2;
+  var current = menuIsOnScreen ? "#menu" : "#home";
+
+  for (var i = 0; i < elNavLinks.length; i++) {
+    if (elNavLinks[i].getAttribute("href") == current) {
+      elNavLinks[i].classList.add("active");
+    } else {
+      elNavLinks[i].classList.remove("active");
+    }
+  }
+}
+
+window.addEventListener("scroll", updateActiveNav);
+updateActiveNav();
