@@ -1,5 +1,5 @@
 :root {
-  --nav-h: 83px; /* height of the sticky nav bar + its top gap */
+  --nav-h: 83px;
   --blush: #ffd6e0;
   --blush-deep: #c94873;
   --cream: #fff8ee;
@@ -8,8 +8,8 @@
   --mint: #cdefe0;
   --mint-deep: #2f7d5e;
 
-  --ink: #4a3340; /* main text (warm plum) */
-  --muted: #7d6671; /* softer text */
+  --ink: #4a3340;
+  --muted: #7d6671;
 
   --radius: 26px;
   --shadow: 0 10px 30px rgba(201, 72, 115, 0.12);
