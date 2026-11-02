@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Details | NASA Space Explorer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <style>
+    :root {
+      --page: #080d1c;
+      --line: rgba(190, 204, 255, 0.16);
+      --text: #f1f3ff;
+      --muted: #a7b2d0;
+      --accent: #b8c7ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      isolation: isolate;
+      position: relative;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 15% 12%, rgba(70, 83, 160, 0.32), transparent 34%),
+        radial-gradient(ellipse at 88% 8%, rgba(108, 65, 151, 0.25), transparent 30%),
+        radial-gradient(ellipse at 72% 72%, rgba(35, 103, 145, 0.16), transparent 34%),
+        var(--page);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.65;
+      background-image:
+        radial-gradient(1px 1px at 20px 30px, #ffffff 98%, transparent),
+        radial-gradient(2px 2px at 90px 80px, #dce5ff 98%, transparent),
+        radial-gradient(1px 1px at 150px 145px, #ffffff 98%, transparent),
+        radial-gradient(1px 1px at 65px 175px, #b8c7ff 98%, transparent);
+      background-size: 190px 190px;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -15%;
+      z-index: -1;
+      pointer-events: none;
+      filter: blur(35px);
+      background:
+        radial-gradient(ellipse at 25% 38%, rgba(104, 83, 190, 0.12), transparent 28%),
+        radial-gradient(ellipse at 78% 58%, rgba(54, 129, 178, 0.12), transparent 30%);
+    }
+
+    h1,
+    h2,
+    h3 {
+      letter-spacing: -0.04em;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .status {
+      padding: 21px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: rgba(18, 27, 52, 0.72);
+      color: #c0c9e1;
+    }
+
+    .navbar {
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 13, 28, 0.82);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-right: 8px;
+      border-radius: 12px;
+      color: #10152c;
+      background: linear-gradient(145deg, #f0eaff, #9dbbff);
+    }
+
+    .main {
+      flex: 1 0 auto;
+      width: 100%;
+      max-width: 1050px;
+      padding-top: 38px;
+      padding-bottom: 65px;
+    }
+
+    .back {
+      color: #cbd6ff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .back:hover {
+      color: white;
+    }
+
+    .detail-panel {
+      margin-top: 22px;
+      --panel-padding: clamp(20px, 4vw, 40px);
+      padding: var(--panel-padding);
+      border: 1px solid var(--line);
+      border-radius: 23px;
+      background: linear-gradient(150deg, rgba(24, 34, 64, 0.96), rgba(13, 21, 42, 0.96));
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .detail-panel h1 {
+      margin: 12px 0 20px;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.12;
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      max-height: 620px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #050912;
+      object-fit: contain;
+    }
+
+    .description-wrap {
+      margin: 24px 0;
+    }
+
+    .description {
+      margin: 0;
+      color: #bdc6df;
+      font-size: 1rem;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    .description.collapsed {
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .see-more {
+      margin-top: 8px;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: #cbd6ff;
+      font-weight: 700;
+    }
+
+    .see-more:hover {
+      color: white;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .fact {
+      min-width: 0;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(8, 14, 29, 0.42);
+    }
+
+    .fact-label {
+      margin-bottom: 7px;
+      color: #a1afd0;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .fact-value {
+      color: #f0f2ff;
+      font-weight: 600;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .credits {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .credit {
+      color: #a4afca;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .source-link {
+      display: inline-block;
+      margin: calc(var(--panel-padding) - 8px) 0 0;
+    }
+
+    footer {
+      flex-shrink: 0;
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      color: #929fbd;
+      font-size: 0.82rem;
+    }
+
+    .back-top {
+      color: #c4d0ff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .back-top:hover {
+      color: #fff;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid #c4d0ff;
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar sticky-top">
+    <div class="container py-2">
+      <a class="brand" href="index.html"><span class="brand-mark">✦</span>NASA Space Explorer</a>
+      <span class="small muted d-none d-sm-inline">Discover the universe through NASA imagery</span>
+    </div>
+  </nav>
+
+  <main class="container main">
+    <a id="backLink" class="back" href="index.html">← Back to image list</a>
+
+    <div id="statusArea" class="status mt-4">Loading image details...</div>
+
+    <article id="detailPanel" class="detail-panel d-none">
+      <div class="eyebrow">NASA image archive</div>
+      <h1 id="imageTitle">Image title</h1>
+      <img id="mainImage" class="hero-image" alt="">
+      <div class="description-wrap">
+        <p id="imageDescription" class="description collapsed"></p>
+        <button id="descriptionToggle" class="see-more d-none" type="button" onclick="toggleDescription()">See more</button>
+      </div>
+
+      <div class="eyebrow mb-3">Image information</div>
+      <div id="facts" class="facts"></div>
+
+      <div class="credits">
+        <div class="eyebrow mb-2">Credits and source</div>
+        <p id="creditInfo" class="credit mb-2"></p>
+        <a id="nasaSource" class="back source-link" href="#" target="_blank" rel="noopener noreferrer">View original record on NASA →</a>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container d-flex flex-wrap justify-content-center justify-content-sm-between text-center text-sm-start gap-2">
+      <span>NASA Space Explorer</span>
+      <span>Imagery and metadata from NASA Image and Video Library</span>
+      <a class="back-top" href="#">↑ Back to top</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+  <script>
+    const API_BASE = "https://images-api.nasa.gov";
+
+    function escapeHtml(str){
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    var elStatusArea = document.getElementById("statusArea");
+    var elDetailPanel = document.getElementById("detailPanel");
+    var elImageTitle = document.getElementById("imageTitle");
+    var elMainImage = document.getElementById("mainImage");
+    var elImageDescription = document.getElementById("imageDescription");
+    var elDescriptionToggle = document.getElementById("descriptionToggle");
+    var elFacts = document.getElementById("facts");
+    var elCreditInfo = document.getElementById("creditInfo");
+    var elBackLink = document.getElementById("backLink");
+    var elNasaSource = document.getElementById("nasaSource");
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get("id");
+    const search = urlParams.get("q") || "";
+    const page = urlParams.get("page") || "1";
+    const isLatest = urlParams.get("latest") === "1";
+
+    if(isLatest){
+      elBackLink.href = "index.html?latest=1&page=" + page;
+    } else if(search){
+      elBackLink.href = "index.html?q=" + encodeURIComponent(search) + "&page=" + page;
+    }
+
+    function showError(message){
+      elStatusArea.classList.remove("d-none");
+      elStatusArea.textContent = message;
+      elStatusArea.style.borderColor = "rgba(255, 130, 130, 0.5)";
+      elDetailPanel.classList.add("d-none");
+    }
+
+    function toggleDescription(){
+      var isCollapsed = elImageDescription.classList.toggle("collapsed");
+      elDescriptionToggle.textContent = isCollapsed ? "See more" : "See less";
+    }
+
+    function addFact(label, value){
+      if(!value){
+        return;
+      }
+
+      elFacts.innerHTML += `
+        <div class="fact">
+          <div class="fact-label">`+escapeHtml(label)+`</div>
+          <div class="fact-value">`+escapeHtml(value)+`</div>
+        </div>
+      `;
+    }
+
+    function formatDate(dateString){
+      if(!dateString){
+        return "";
+      }
+
+      return new Date(dateString).toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+
+    function getPreviewUrl(item){
+      var preview = (item.links || []).find(link => link.rel === "preview" && link.render === "image");
+      return preview ? preview.href : "";
+    }
+
+    function getCredits(data){
+      var credits = [];
+
+      if(data.photographer){
+        credits.push("Photographer: " + data.photographer);
+      }
+      if(data.secondary_creator){
+        credits.push("Additional credit: " + data.secondary_creator);
+      }
+      if(data.center){
+        credits.push("NASA center: " + data.center);
+      }
+      if(data.keywords && data.keywords.length > 0){
+        credits.push("Keywords: " + data.keywords.slice(0, 10).join(", "));
+      }
+
+      return credits.join(" · ");
+    }
+
+    const getLargeImageUrl = async () => {
+      try {
+        const response = await fetch(API_BASE + "/asset/" + encodeURIComponent(id));
+        if(!response.ok){
+          return "";
+        }
+
+        const manifest = await response.json();
+        var assets = manifest.collection.items || [];
+
+        for(const size of ["orig", "medi", "larg"]){
+          var pattern = new RegExp("~" + size + "(?:\\?|$)", "i");
+          var match = assets.find(asset => pattern.test(asset.href || ""));
+
+          if(match){
+            return match.href;
+          }
+        }
+      } catch (error) {
+      }
+
+      return "";
+    }
+
+    const getImageDetails = async () => {
+      if(id == null || id === ""){
+        showError("No image was selected. Return to the image list and choose a photograph.");
+        return;
+      }
+
+      try {
+        const searchParams = new URLSearchParams({
+          nasa_id: id,
+          media_type: "image"
+        });
+
+        const response = await fetch(API_BASE + "/search?" + searchParams.toString());
+        if(!response.ok){
+          throw new Error("NASA image lookup failed (" + response.status + ").");
+        }
+
+        const result = await response.json();
+        var item = result.collection.items[0];
+
+        if(!item || !item.data || !item.data[0]){
+          throw new Error("NASA could not find this image record.");
+        }
+
+        var data = item.data[0];
+        var imageUrl = (await getLargeImageUrl()) || getPreviewUrl(item);
+
+        if(!imageUrl){
+          throw new Error("No displayable image URL was provided for this NASA record.");
+        }
+
+        var title = data.title || "Untitled NASA image";
+
+        document.title = title + " | NASA Space Explorer";
+        elImageTitle.textContent = title;
+        elImageDescription.textContent = data.description || data.description_508 || "No description is available for this NASA image.";
+
+        elMainImage.onerror = function(){
+          showError("The image file could not be displayed. Return to the list and try another photograph.");
+        };
+        elMainImage.src = imageUrl;
+        elMainImage.alt = title;
+
+        addFact("Date created", formatDate(data.date_created));
+        addFact("NASA center", data.center);
+        addFact("NASA ID", data.nasa_id || id);
+        addFact("Media type", data.media_type || "Image");
+        addFact("Location", data.location);
+        addFact("Photographer", data.photographer || data.secondary_creator);
+
+        elCreditInfo.textContent = getCredits(data) || "Credit information was not provided in this record. Please check the NASA source record.";
+        elNasaSource.href = "https://images.nasa.gov/details/" + encodeURIComponent(id);
+
+        elStatusArea.classList.add("d-none");
+        elDetailPanel.classList.remove("d-none");
+
+        if(elImageDescription.scrollHeight > elImageDescription.clientHeight){
+          elDescriptionToggle.classList.remove("d-none");
+        }
+      } catch (error) {
+        showError(error.message + " Please return to the list and try another image.");
+      }
+    }
+
+    getImageDetails();
+  </script>
+</body>
+
+</html>
